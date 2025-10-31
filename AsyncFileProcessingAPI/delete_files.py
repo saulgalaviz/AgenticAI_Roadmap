@@ -18,3 +18,4 @@ def get_and_delete_files(folder_path):
         print(f'An error occurred: {e}')
 
 get_and_delete_files('data/raw')
+get_and_delete_files('data/processed')

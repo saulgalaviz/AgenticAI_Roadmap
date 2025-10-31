@@ -2,15 +2,12 @@ import asyncio
 import datetime
 
 import httpx
-import json
 
-async def load_file(response, json_file_name):
-    with open(json_file_name, "w") as json_file:
-        json.dump(response, json_file, indent=4)
+from AsyncFileProcessingAPI.file_operations import load_file
 
 async def get_response(client,source, num, url, raw_data_path):
     query = await client.get(url)
-    fetched_at = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    fetched_at = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     data = query.json()
     file_data = {
         'source': source,
