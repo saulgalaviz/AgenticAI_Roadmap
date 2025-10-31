@@ -1,5 +1,6 @@
 import asyncio
 import datetime
+import os
 
 import httpx
 
@@ -15,12 +16,12 @@ async def get_response(client,source, num, url, raw_data_path):
         'fetched_at': fetched_at,
         'data': data
     }
-    file_path = f'{raw_data_path}{source}_{num}.json'
+    file_path = os.path.join(raw_data_path, f'{source}_{num}.json')
 
     await load_file(file_data, file_path)
 
 async def main(sources, urls, api_calls, raw_data_path):
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=100) as client:
         tasks = [
             get_response(client, sources[i], num, urls[i], raw_data_path)
             for num in range(api_calls)
