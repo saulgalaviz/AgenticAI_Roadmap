@@ -1,26 +1,11 @@
 import asyncio
 from dotenv import load_dotenv
-load_dotenv(dotenv_path='../../reference/.env')
-
 from langchain_openai import ChatOpenAI
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-def load_document():
-    file_path = '../../reference/punching_down_podcast_episode_18.txt'
-
-    with open(file_path, 'r') as file:
-        return file.read()
-
-
-def split_into_chunks(text):
-    splitter = RecursiveCharacterTextSplitter(
-        chunk_size=2000,
-        chunk_overlap=200,
-    )
-    return splitter.create_documents([text])
-
+load_dotenv(dotenv_path='../../reference/.env')
 
 map_prompt = PromptTemplate.from_template('''
 Write a concise summary of the following document chunk:
@@ -46,6 +31,20 @@ parser = StrOutputParser()
 map_chain = map_prompt | model | parser
 reduce_chain = reduce_prompt | model | parser
 
+
+def load_document():
+    file_path = '../../reference/punching_down_podcast_episode_18.txt'
+
+    with open(file_path, 'r') as file:
+        return file.read()
+
+
+def split_into_chunks(text):
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=2000,
+        chunk_overlap=200,
+    )
+    return splitter.create_documents([text])
 
 async def summarize_chunk(chunk):
     return await map_chain.ainvoke({'chunk': chunk})
