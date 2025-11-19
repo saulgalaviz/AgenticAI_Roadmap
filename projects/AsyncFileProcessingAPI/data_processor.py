@@ -2,9 +2,9 @@ import asyncio
 import os
 import re
 
-from AsyncFileProcessingAPI import config
-from AsyncFileProcessingAPI.file_operations import load_file, get_files
-from AsyncFileProcessingAPI.file_operations import read_file
+from projects.AsyncFileProcessingAPI import config
+from projects.AsyncFileProcessingAPI.file_operations import load_file, get_files
+from projects.AsyncFileProcessingAPI.file_operations import read_file
 
 async def data_mapper(raw_data, key):
     keys = key.split('.')

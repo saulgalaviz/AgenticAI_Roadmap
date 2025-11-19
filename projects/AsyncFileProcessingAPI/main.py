@@ -1,5 +1,6 @@
 import asyncio
-from AsyncFileProcessingAPI import fetcher, data_processor, config
+from projects.AsyncFileProcessingAPI import fetcher, data_processor, config
+
 
 async def main(api_calls: int = 5):
     await fetcher.main(config.SOURCES, config.URLS, api_calls, config.RAW_DATA_DIR)

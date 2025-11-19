@@ -18,14 +18,14 @@ def summarize_text(text, style = 'concise'):
 
 
 if __name__ == '__main__':
-    file_path = 'article.txt'
+    file_path = '../../reference/article.txt'
 
     with open(file_path, 'r') as file:
         content = file.read()
 
     style = input('Enter the writing style you"d like to use to summarize the text: ')
 
-    load_dotenv()
+    load_dotenv(dotenv_path='../../reference/.env')
     client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
     response = summarize_text(content, style)

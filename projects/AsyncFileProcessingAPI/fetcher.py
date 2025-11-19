@@ -4,7 +4,7 @@ import os
 
 import httpx
 
-from AsyncFileProcessingAPI.file_operations import load_file
+from projects.AsyncFileProcessingAPI.file_operations import load_file
 
 async def get_response(client,source, num, url, raw_data_path):
     query = await client.get(url)

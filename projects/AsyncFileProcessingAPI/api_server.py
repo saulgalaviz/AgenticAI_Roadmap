@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from starlette.responses import Response
 import asyncio
 
-from AsyncFileProcessingAPI import delete_files, config, file_operations, fetcher, data_processor
+from projects.AsyncFileProcessingAPI import fetcher, delete_files, data_processor, file_operations, config
 
 app = FastAPI()
 

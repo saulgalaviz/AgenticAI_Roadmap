@@ -4,7 +4,7 @@ import pandas as pd
 from openai import OpenAI
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(dotenv_path='../../reference/.env')
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 def chunk_text(text, max_tokens=500, overlap=50):
@@ -34,7 +34,7 @@ def embed_text(docs):
 
 
 if __name__ == '__main__':
-    file_path = 'star_wars_lore.txt'
+    file_path = '../../reference/star_wars_lore.txt'
 
     with open(file_path, 'r') as file:
         content = file.read()
